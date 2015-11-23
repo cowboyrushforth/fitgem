@@ -32,6 +32,21 @@ module Fitgem
       get("/user/#{@user_id}/activities/#{activity}/date/#{format_date(start)}/#{format_date(finish)}.json")
     end
 
+
+    # Get a list of the logged activities after start date
+    #
+    # @return [Hash] list of logged activities and pagination information
+    def list_logs_after(start, offset=0, limit=100, sort="desc")
+      get("/user/#{@user_id}/activities/list.json?afterDate=#{start.strftime("%Y-%m-%d")}&offset=#{offset}&limit=#{limit}&sort=#{sort}")
+    end
+
+    # Get a list of the logged activities after start date
+    #
+    # @return [Hash] list of logged activities and pagination information
+    def list_logs_before(finish, offset=0, limit=100, sort="desc")
+      get("/user/#{@user_id}/activities/list.json?beforeDate=#{finish.strftime("%Y-%m-%d")}&offset=#{offset}&limit=#{limit}&sort=#{sort}")
+    end
+
     # Get a list of the frequently logged activities
     #
     # @return [Array] list of frequently logged activities
